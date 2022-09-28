@@ -1,7 +1,8 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/product.dart';
+import '../../models/product.dart';
 import '../core/widgets/image_holder.dart';
 
 class ManageProduct extends StatelessWidget {

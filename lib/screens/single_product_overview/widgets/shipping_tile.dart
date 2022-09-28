@@ -1,7 +1,7 @@
 import 'package:day_4/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import 'product_specifications.dart';
 
 class ShippingTile extends StatelessWidget {

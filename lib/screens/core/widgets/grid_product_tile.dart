@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
 import '../../../providers/auth.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/reviews.dart';
 import '../../../providers/themes.dart';
 import '../../single_product_overview/product_overview.dart';

@@ -1,7 +1,7 @@
 import '../models/review.dart';
 import '../network_module/api_path.dart';
 import '../network_module/http_clients.dart';
-import '../providers/product.dart';
+import '../models/product.dart';
 
 class ProductRepository {
   Future<List<Product>?> fetchProductDetails(String userId) async {
@@ -43,6 +43,5 @@ Future<List<SingleReview>?> fetchReview(String userId) async {
       );
     },
   );
-
   return loadedReviews;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import 'product_specifications.dart';
 
 class ServiceTile extends StatelessWidget {

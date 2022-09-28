@@ -1,10 +1,11 @@
 import 'package:day_4/constants/colors.dart';
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:page_view_indicators/animated_circle_page_indicator.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../core/widgets/grid_product_tile.dart';
 import '../../core/widgets/list_product_tile.dart';
 

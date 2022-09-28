@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/cartitem.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../core/widgets/image_holder.dart';
 
 class BuyDialogue extends StatefulWidget {
@@ -176,10 +176,10 @@ class _BuyDialogueState extends State<BuyDialogue> {
                               ),
                             ),
                           ),
+                          const Divider(),
                         ],
                       ),
                     ),
-                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/screens/home/widgets/home_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../network_module/api_response.dart';
-import '../../providers/product.dart';
+import '../../models/product.dart';
 import '../../providers/reviews.dart';
 import '../../providers/themes.dart';
 import '../connection_screen.dart';

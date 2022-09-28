@@ -1,10 +1,11 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:day_4/screens/category_screen/widgets/category_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/category.dart';
-import '../../providers/product.dart';
+import '../../models/product.dart';
 import '../core/widgets/search_delegate.dart';
 import 'category_pages.dart';
 

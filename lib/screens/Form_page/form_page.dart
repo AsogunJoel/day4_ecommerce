@@ -1,6 +1,7 @@
 import 'package:day_4/constants/colors.dart';
 
-import 'package:day_4/providers/product.dart';
+import 'package:day_4/models/product.dart';
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

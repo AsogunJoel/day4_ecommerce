@@ -1,3 +1,4 @@
+import 'package:day_4/providers/orders_provider.dart';
 import 'package:day_4/screens/auth_screen/auth_screen.dart';
 import 'package:day_4/screens/connection_screen.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../providers/auth.dart';
-import '../../providers/orders.dart' show Order;
+import '../../models/orders.dart' show Order;
 import 'orderitem.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -48,8 +49,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   return homeShimmerPage(context);
                 } else if (dataSnapShot.hasError) {
                   return Center(
-                    child:
-                        NetworkPage('Something went wrong..', retryFetchdata),
+                    child: NetworkPage(
+                      'Something went wrong...',
+                      retryFetchdata,
+                    ),
                   );
                 } else {
                   return Consumer<Order>(builder: (ctx, orderData, _) {

@@ -2,7 +2,7 @@ import 'package:day_4/constants/colors.dart';
 import 'package:day_4/screens/single_product_overview/widgets/product_specifications.dart';
 import 'package:flutter/material.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 
 class Specification extends StatelessWidget {
   const Specification({

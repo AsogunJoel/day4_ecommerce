@@ -4,7 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/reviews.dart';
 import '../../core/widgets/image_holder.dart';
 import '../../single_product_overview/product_overview.dart';

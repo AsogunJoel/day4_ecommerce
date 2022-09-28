@@ -1,5 +1,6 @@
 import 'package:day_4/providers/cartitem.dart';
-import 'package:day_4/providers/orders.dart';
+import 'package:day_4/models/orders.dart';
+import 'package:day_4/providers/orders_provider.dart';
 import 'package:day_4/screens/payment/widgets/delivery_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

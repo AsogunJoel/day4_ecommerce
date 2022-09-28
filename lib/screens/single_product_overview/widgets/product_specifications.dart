@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 
 class Specifications extends StatelessWidget {
   const Specifications({Key? key}) : super(key: key);

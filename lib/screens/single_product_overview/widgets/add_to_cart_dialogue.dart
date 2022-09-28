@@ -1,5 +1,5 @@
 import 'package:day_4/providers/cartitem.dart';
-import 'package:day_4/providers/product.dart';
+import 'package:day_4/models/product.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:day_4/screens/core/widgets/bottom_navigation_bar_screen.dart';
 import 'package:flutter/material.dart';

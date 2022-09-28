@@ -1,12 +1,14 @@
+import 'package:day_4/providers/orders_provider.dart';
+import 'package:day_4/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/product.dart';
+import 'models/product.dart';
 import 'providers/auth.dart';
 import 'providers/cartitem.dart';
 import 'providers/category.dart';
-import 'providers/orders.dart';
+import 'models/orders.dart';
 import 'providers/reviews.dart';
 import 'providers/themes.dart';
 import 'screens/Electronics_category_screens/electronics_category._screen.dart';

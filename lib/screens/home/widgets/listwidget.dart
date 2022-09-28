@@ -1,8 +1,9 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../flash_sales/flash_sales.dart';
 import 'overview_single_product.dart';
 

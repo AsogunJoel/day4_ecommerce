@@ -3,7 +3,7 @@ import 'package:page_view_indicators/animated_circle_page_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/themes.dart';
 import '../../core/widgets/image_holder.dart';
 import 'price_title_favourite.dart';

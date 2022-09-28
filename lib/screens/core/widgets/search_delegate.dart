@@ -1,8 +1,9 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/themes.dart';
 import 'search_grid.dart';
 

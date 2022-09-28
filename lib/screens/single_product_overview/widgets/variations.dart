@@ -2,7 +2,7 @@ import 'package:day_4/screens/single_product_overview/widgets/buy_dialogue.dart'
 import 'package:day_4/screens/single_product_overview/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 
 class ProductColors extends StatefulWidget {
   ProductColors({

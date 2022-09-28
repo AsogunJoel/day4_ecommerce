@@ -2,7 +2,7 @@ import 'package:day_4/screens/core/widgets/image_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../product_overview.dart';
 
 class OverviewSingleProductWidget extends StatelessWidget {

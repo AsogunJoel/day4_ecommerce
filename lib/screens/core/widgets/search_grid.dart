@@ -1,3 +1,4 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/screens/core/widgets/grid_product_tile.dart';
 import 'package:day_4/screens/core/widgets/list_product_tile.dart';
 import 'package:day_4/screens/core/widgets/search_delegate.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/themes.dart';
 
 class Grid extends StatefulWidget {

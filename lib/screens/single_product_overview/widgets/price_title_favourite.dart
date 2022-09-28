@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/auth.dart';
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../../providers/reviews.dart';
 
 class PriceTitleFav extends StatefulWidget {

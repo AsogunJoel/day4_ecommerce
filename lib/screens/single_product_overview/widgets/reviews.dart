@@ -11,7 +11,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 
 class ReviewTile extends StatelessWidget {
   const ReviewTile({

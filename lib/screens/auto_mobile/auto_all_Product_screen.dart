@@ -1,10 +1,11 @@
+import 'package:day_4/providers/products_provider.dart';
 import 'package:day_4/screens/Electronics_category_screens/widgets/product_grid.dart';
 
 import '../cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/product.dart';
+import '../../models/product.dart';
 import '../core/widgets/cart_Widgets.dart';
 import '../core/widgets/search_delegate.dart';
 

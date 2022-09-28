@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/product.dart';
+import '../../../models/product.dart';
 import '../../single_product_overview/product_overview.dart';
 
 class HomeOverviewSingleProductWidget extends StatelessWidget {
