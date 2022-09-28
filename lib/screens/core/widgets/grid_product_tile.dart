@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -96,78 +97,67 @@ class GridProductTile extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                product.title,
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 5.0),
-                                  child: Text(
-                                    product.title,
-                                    textAlign: TextAlign.start,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
+                                RatingBarIndicator(
+                                  rating: rating,
+                                  itemBuilder: (ctx, index) => const Icon(
+                                    Icons.star_rounded,
+                                    color: Colors.orange,
+                                  ),
+                                  itemSize: 15,
+                                  itemCount: 5,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text(
+                                  rating.toStringAsFixed(1),
+                                  style: const TextStyle(
+                                    fontSize: 13,
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    RatingBarIndicator(
-                                      rating: rating,
-                                      itemBuilder: (ctx, index) => const Icon(
-                                        Icons.star_rounded,
-                                        color: Colors.orange,
-                                      ),
-                                      itemSize: 15,
-                                      itemCount: 5,
-                                    ),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          product.totalrating!
-                                              .toStringAsFixed(1),
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        Text(
-                                          ' (${reviews.length})',
-                                          style: const TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 5.0),
-                                  child: Text(
-                                    product.nairaPrice(product.price),
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 5.0),
-                                  child: Text(
-                                    product.shippingFee == 0
-                                        ? '+ Free Shipping'
-                                        : '+ Shipping  ${product.nairaPrice(product.shippingFee)}',
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: kRedColor,
-                                    ),
+                                Text(
+                                  ' (${reviews.length.toString()})',
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 13,
                                   ),
                                 ),
                               ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                getNairaFormat().nairaPrice(product.price),
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                product.shippingFee == 0
+                                    ? '+ Free Shipping'
+                                    : '+ Shipping ${getNairaFormat().nairaPrice(product.shippingFee)}',
+                                style: const TextStyle(
+                                  color: kRedColor,
+                                  fontSize: 13,
+                                ),
+                              ),
                             ),
                           ],
                         ),

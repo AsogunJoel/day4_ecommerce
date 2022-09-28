@@ -1,7 +1,6 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../models/product.dart';
 import '../../providers/products_provider.dart';
 import '../core/widgets/image_holder.dart';
 import '../single_product_overview/product_overview.dart';
@@ -71,7 +70,7 @@ class _WishlistState extends State<Wishlist> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              '${product[i].nairaPrice(product[i].price)}',
+                              getNairaFormat().nairaPrice(product[i].price),
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
@@ -82,7 +81,7 @@ class _WishlistState extends State<Wishlist> {
                               child: Text(
                                 product[i].shippingFee == 0
                                     ? '+ Free Shipping'
-                                    : '+ Shipping ${product[i].nairaPrice(product[i].shippingFee)}',
+                                    : '+ Shipping ${getNairaFormat().nairaPrice(product[i].shippingFee)}',
                                 style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 15,

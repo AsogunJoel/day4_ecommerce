@@ -1,3 +1,4 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -39,7 +40,7 @@ class _PriceTitleFavState extends State<PriceTitleFav> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.product.nairaPrice(widget.product.price),
+                getNairaFormat().nairaPrice(widget.product.price),
                 style: const TextStyle(
                   fontSize: 20,
                 ),
@@ -52,7 +53,7 @@ class _PriceTitleFavState extends State<PriceTitleFav> {
                           '',
                         )
                       : Text(
-                          widget.product.nairaPrice(widget.product.oldPrice),
+                          getNairaFormat().nairaPrice(widget.product.oldPrice),
                           style: const TextStyle(
                             fontSize: 15,
                             color: Colors.grey,

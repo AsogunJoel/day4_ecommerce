@@ -86,7 +86,6 @@ class _CategoryProductGridState extends State<CategoryProductGrid>
               background: SizedBox(
                 height: 20,
                 child: Container(
-                  decoration: const BoxDecoration(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -123,26 +122,38 @@ class _CategoryProductGridState extends State<CategoryProductGrid>
                           ),
                         ),
                       ),
-                      const Spacer(),
                       Consumer<Products>(
-                        builder: (context, value, child) => IconButton(
-                          onPressed: () {
-                            dropdown = !dropdown;
-                            dropdown
-                                ? _animatedController.forward()
-                                : _animatedController.reverse();
-                            widget.productData.toggleGridView();
+                        builder: (context, value, child) => AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 700),
+                          reverseDuration: const Duration(milliseconds: 700),
+                          switchInCurve: Curves.elasticInOut,
+                          switchOutCurve: Curves.easeIn,
+                          transitionBuilder: (child, animation) {
+                            return ScaleTransition(
+                              scale: animation,
+                              child: child,
+                            );
                           },
-                          icon: AnimatedIcon(
-                            icon: AnimatedIcons.list_view,
-                            progress: _animatedController,
-                          ),
+                          child: value.gridview
+                              ? IconButton(
+                                  key: const ValueKey('1'),
+                                  onPressed: () {
+                                    value.toggleGridView();
+                                  },
+                                  icon: const Icon(
+                                    Icons.grid_view_sharp,
+                                  ),
+                                )
+                              : IconButton(
+                                  key: const ValueKey('2'),
+                                  onPressed: () {
+                                    value.toggleGridView();
+                                  },
+                                  icon: const Icon(
+                                    Icons.list,
+                                  ),
+                                ),
                         ),
-                      ),
-                      Container(
-                        height: 30,
-                        width: 2,
-                        color: Colors.grey,
                       ),
                     ],
                   ),

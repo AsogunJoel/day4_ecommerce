@@ -1,4 +1,5 @@
 import 'package:day_4/screens/core/widgets/image_holder.dart';
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -73,7 +74,7 @@ class OverviewSingleProductWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            products.nairaPrice(products.price),
+                            getNairaFormat().nairaPrice(products.price),
                             softWrap: true,
                             style: const TextStyle(
                               fontSize: 13,
@@ -82,7 +83,7 @@ class OverviewSingleProductWidget extends StatelessWidget {
                           const SizedBox(width: 3),
                           if (products.oldPrice != null)
                             Text(
-                              products.nairaPrice(products.oldPrice),
+                              getNairaFormat().nairaPrice(products.oldPrice),
                               softWrap: true,
                               style: const TextStyle(
                                 color: Colors.grey,

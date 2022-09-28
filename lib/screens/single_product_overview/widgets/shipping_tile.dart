@@ -46,7 +46,7 @@ class ShippingTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      product.nairaPrice(product.shippingFee),
+                      getNairaFormat().nairaPrice(product.shippingFee),
                       style: const TextStyle(
                         fontSize: 13,
                         color: kRedColor,

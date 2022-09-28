@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:day_4/constants/colors.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:day_4/screens/core/widgets/image_holder.dart';
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,7 @@ class HomeOverviewSingleProductWidget extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              product.nairaPrice(product.price),
+                              getNairaFormat().nairaPrice(product.price),
                               softWrap: true,
                               style: const TextStyle(
                                 fontSize: 15,
@@ -98,7 +99,7 @@ class HomeOverviewSingleProductWidget extends StatelessWidget {
                             const SizedBox(width: 3),
                             if (product.oldPrice != null)
                               Text(
-                                product.nairaPrice(product.oldPrice!),
+                                getNairaFormat().nairaPrice(product.oldPrice!),
                                 softWrap: true,
                                 style: const TextStyle(
                                   color: Colors.grey,

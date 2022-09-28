@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
-import '../../models/product.dart';
 import '../../providers/themes.dart';
 import 'widgets/gridtile.dart';
 import 'widgets/listgrid.dart';
@@ -23,7 +22,6 @@ class _FlashSalesState extends State<FlashSales>
   var selectedValue = "Price(Low to High)";
 
   late AnimationController _animatedController;
-  bool dropdown = false;
 
   @override
   void initState() {
@@ -121,6 +119,7 @@ class _FlashSalesState extends State<FlashSales>
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 padding: const EdgeInsets.symmetric(
@@ -149,20 +148,38 @@ class _FlashSalesState extends State<FlashSales>
                           ),
                         ),
                       ),
-                      const Spacer(),
                       Consumer<Products>(
-                        builder: (context, value, child) => IconButton(
-                            onPressed: () {
-                              dropdown = !dropdown;
-                              dropdown
-                                  ? _animatedController.forward()
-                                  : _animatedController.reverse();
-                              productData.toggleGridView();
-                            },
-                            icon: AnimatedIcon(
-                              icon: AnimatedIcons.list_view,
-                              progress: _animatedController,
-                            )),
+                        builder: (context, value, child) => AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 700),
+                          reverseDuration: const Duration(milliseconds: 700),
+                          switchInCurve: Curves.elasticInOut,
+                          switchOutCurve: Curves.easeIn,
+                          transitionBuilder: (child, animation) {
+                            return ScaleTransition(
+                              scale: animation,
+                              child: child,
+                            );
+                          },
+                          child: value.gridview
+                              ? IconButton(
+                                  key: const ValueKey('1'),
+                                  onPressed: () {
+                                    value.toggleGridView();
+                                  },
+                                  icon: const Icon(
+                                    Icons.grid_view_sharp,
+                                  ),
+                                )
+                              : IconButton(
+                                  key: const ValueKey('2'),
+                                  onPressed: () {
+                                    value.toggleGridView();
+                                  },
+                                  icon: const Icon(
+                                    Icons.list,
+                                  ),
+                                ),
+                        ),
                       ),
                     ],
                   ),

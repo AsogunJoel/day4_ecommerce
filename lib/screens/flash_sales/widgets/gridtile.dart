@@ -1,3 +1,4 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -106,8 +107,9 @@ class GridProdTile extends StatelessWidget {
                                     product.title,
                                     textAlign: TextAlign.start,
                                     style: const TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 15,
                                     ),
+                                    maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -143,9 +145,9 @@ class GridProdTile extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 5.0),
                                   child: Text(
-                                    '${product.nairaPrice(product.price)}',
+                                    getNairaFormat().nairaPrice(product.price),
                                     style: const TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -155,10 +157,10 @@ class GridProdTile extends StatelessWidget {
                                   child: Text(
                                     product.shippingFee == 0
                                         ? '+ Free Shipping'
-                                        : '+ Shipping ${product.nairaPrice(product.shippingFee)}',
+                                        : '+ Shipping ${getNairaFormat().nairaPrice(product.shippingFee)}',
                                     style: const TextStyle(
                                       color: kRedColor,
-                                      fontSize: 12,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),

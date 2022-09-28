@@ -1,3 +1,4 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -65,8 +66,9 @@ class ListProductTile extends StatelessWidget {
                 children: [
                   Text(
                     product.title,
-                    style: const TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 15),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
                   ),
                   Row(
                     children: [
@@ -82,29 +84,25 @@ class ListProductTile extends StatelessWidget {
                       const SizedBox(
                         width: 2,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            product.totalrating!.toStringAsFixed(1),
-                            style: const TextStyle(
-                              fontSize: 12,
-                            ),
-                          ),
-                          Text(
-                            ' (${reviews.length})',
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        rating.toStringAsFixed(1),
+                        style: const TextStyle(
+                          fontSize: 13,
+                        ),
+                      ),
+                      Text(
+                        ' (${reviews.length.toString()})',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
                   Text(
-                    product.nairaPrice(product.price),
+                    getNairaFormat().nairaPrice(product.price),
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -113,10 +111,10 @@ class ListProductTile extends StatelessWidget {
                     child: Text(
                       product.shippingFee == 0
                           ? '+ Free Shipping'
-                          : '+ Shipping ${product.nairaPrice(product.shippingFee)}',
-                      style: TextStyle(
+                          : '+ Shipping ${getNairaFormat().nairaPrice(product.shippingFee)}',
+                      style: const TextStyle(
                         color: kRedColor,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                   ),

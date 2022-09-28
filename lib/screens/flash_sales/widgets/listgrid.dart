@@ -1,3 +1,4 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -73,8 +74,9 @@ class SliverListProductTile extends StatelessWidget {
                 children: [
                   Text(
                     product.title,
-                    style: const TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 15),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
                   ),
                   Row(
                     children: [
@@ -106,9 +108,9 @@ class SliverListProductTile extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    '${product.nairaPrice(product.price)}',
+                    getNairaFormat().nairaPrice(product.price),
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -117,10 +119,10 @@ class SliverListProductTile extends StatelessWidget {
                     child: Text(
                       product.shippingFee == 0
                           ? '+ Free Shipping'
-                          : '+ Shipping ${product.nairaPrice(product.shippingFee)}',
-                      style: TextStyle(
+                          : '+ Shipping ${getNairaFormat().nairaPrice(product.shippingFee)}',
+                      style: const TextStyle(
                         color: kRedColor,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                   ),

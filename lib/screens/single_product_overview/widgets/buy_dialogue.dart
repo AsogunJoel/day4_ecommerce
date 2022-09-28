@@ -1,3 +1,5 @@
+import 'package:day_4/utils/naira.dart';
+
 import '../../payment/payment_details_page.dart';
 import '../../payment/payment_page.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +74,8 @@ class _BuyDialogueState extends State<BuyDialogue> {
                               style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
                                 TextSpan(
-                                  text:
-                                      '${widget.product.nairaPrice(widget.product.price)}',
+                                  text: getNairaFormat()
+                                      .nairaPrice(widget.product.price),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
@@ -269,7 +271,7 @@ class _BuyDialogueState extends State<BuyDialogue> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
-                            'Shipping: ${widget.product.nairaPrice(widget.product.shippingFee)}',
+                            'Shipping: ${getNairaFormat().nairaPrice(widget.product.shippingFee)}',
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

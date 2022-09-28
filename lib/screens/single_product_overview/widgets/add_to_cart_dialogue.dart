@@ -2,6 +2,7 @@ import 'package:day_4/providers/cartitem.dart';
 import 'package:day_4/models/product.dart';
 import 'package:day_4/providers/themes.dart';
 import 'package:day_4/screens/core/widgets/bottom_navigation_bar_screen.dart';
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +71,7 @@ class _AddToCartDialogueState extends State<AddToCartDialogue> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          '${widget.product.nairaPrice(widget.product.price)} / piece',
+                          '${getNairaFormat().nairaPrice(widget.product.price)} / piece',
                           style: const TextStyle(
                             fontSize: 15,
                           ),
@@ -250,7 +251,7 @@ class _AddToCartDialogueState extends State<AddToCartDialogue> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Shipping: ${widget.product.nairaPrice(widget.product.shippingFee)}',
+                                'Shipping: ${getNairaFormat().nairaPrice(widget.product.shippingFee)}',
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
