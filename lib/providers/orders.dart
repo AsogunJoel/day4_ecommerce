@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'package:day_4/network_module/api_response.dart';
+import 'package:day_4/constants/key.dart';
 import 'package:day_4/providers/cartitem.dart';
-import 'package:day_4/repository/prod_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
@@ -42,8 +41,7 @@ class Order with ChangeNotifier {
   }
 
   Future<void> fetchAndSetOrders() async {
-    final url = Uri.parse(
-        'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken');
+    final url = Uri.parse('$urlfromenv/orders/$userId.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final List<OrderItem> loadedOrders = [];

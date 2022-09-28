@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:day_4/constants/key.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,8 +27,7 @@ class Review with ChangeNotifier {
   }
 
   Future<void> fetchAndSetReviews() async {
-    var url = Uri.parse(
-        'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/review.json');
+    var url = Uri.parse('$urlfromenv/review.json');
     try {
       final response = await http.get(url);
       Map<String, dynamic>? extractedaData = json.decode(response.body);

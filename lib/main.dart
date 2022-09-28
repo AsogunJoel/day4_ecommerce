@@ -19,9 +19,11 @@ import 'screens/flash_sales/flash_sales.dart';
 import 'screens/single_product_overview/product_overview.dart';
 import 'screens/single_product_overview/widgets/product_specifications.dart';
 import 'screens/wishlist/wishlist_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(
     const MyApp(),
   );

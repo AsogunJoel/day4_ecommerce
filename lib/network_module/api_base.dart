@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class APIBase {
   static String get baseURL {
@@ -10,10 +11,11 @@ class APIBase {
   }
 
   static String get baseProdURL {
+    // dotenv.env['google_api_key']!;
     if (kReleaseMode) {
-      return "https://flutter-ecommerce-practice-default-rtdb.firebaseio.com";
+      return dotenv.env['firebaseurl']!;
     } else {
-      return "https://flutter-ecommerce-practice-default-rtdb.firebaseio.com";
+      return dotenv.env['firebaseurl']!;
     }
   }
 }

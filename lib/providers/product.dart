@@ -1,11 +1,11 @@
 import 'dart:convert';
 
+import 'package:day_4/constants/key.dart';
 import 'package:day_4/network_module/api_response.dart';
 import 'package:day_4/repository/prod_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/review.dart';
 
@@ -72,8 +72,8 @@ class Product with ChangeNotifier {
     final oldStatus = isFavourite;
     isFavourite = !isFavourite;
     notifyListeners();
-    final url = Uri.parse(
-        'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/userFavourite/$userId/$id.json?auth=$token');
+    final url =
+        Uri.parse('$urlfromenv/userFavourite/$userId/$id.json?auth=$token');
     try {
       final response = await http.put(
         url,
@@ -147,7 +147,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
-      'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/products.json',
+      '$urlfromenv/products.json',
     );
     try {
       final response = await http.post(
