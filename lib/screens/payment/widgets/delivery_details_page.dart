@@ -27,10 +27,12 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -51,7 +53,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                     key: const ValueKey('Name'),
                     cursorColor: Colors.black,
                     style: const TextStyle(fontSize: 15),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_circle_rounded),
                       hintText: 'Name',
@@ -85,7 +87,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                     key: const ValueKey('Phonenumber'),
                     cursorColor: Colors.black,
                     style: const TextStyle(fontSize: 15),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.phone),
                       hintText: 'Phone number',
@@ -153,7 +155,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                     key: const ValueKey('Address'),
                     cursorColor: Colors.black,
                     style: const TextStyle(fontSize: 15),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.location_on),
                       hintText: 'Delivery Address',

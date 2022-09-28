@@ -31,7 +31,16 @@ class _CheckOutButtonState extends State<CheckOutButton> {
 
     return TextButton(
       onPressed: widget.cart.product.isEmpty
-          ? () {}
+          ? () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.black,
+                  behavior: SnackBarBehavior.floating,
+                  content: Text('Cart is empty'),
+                ),
+              );
+            }
           : () {
               if (_auth) {
                 showDialog(
@@ -82,8 +91,6 @@ class _CheckOutButtonState extends State<CheckOutButton> {
                     ],
                   ),
                 );
-              } else if (widget.cart.product.isEmpty) {
-                return;
               } else {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -105,7 +112,7 @@ class _CheckOutButtonState extends State<CheckOutButton> {
               }
             },
       child: Text(
-        'CHECK OUT (${widget.cart.product.length})',
+        'ORDER (${widget.cart.product.length})',
       ),
     );
   }

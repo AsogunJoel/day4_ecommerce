@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -22,7 +23,7 @@ class _OrderConState extends State<OrderCon> {
       child: Column(
         children: [
           ListTile(
-            title: Text('${widget.order.nairaPrice(widget.order.amount)}'),
+            title: Text(getNairaFormat().nairaPrice(widget.order.amount)),
             subtitle: Text(
               DateFormat('dd.MM.yyy, hh:mm').format(widget.order.dateTime),
             ),

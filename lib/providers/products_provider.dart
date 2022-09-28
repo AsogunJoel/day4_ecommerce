@@ -25,7 +25,6 @@ class Products with ChangeNotifier {
 
   Future<void> fetchAndSetProduct() async {
     _product = ApiResponse.loading('loading... ');
-    notifyListeners();
     try {
       List<Product>? products =
           await _albumRepository.fetchProductDetails(userId);
@@ -36,8 +35,8 @@ class Products with ChangeNotifier {
       _product = ApiResponse.error(
         e.toString(),
       );
-      notifyListeners();
     }
+    notifyListeners();
   }
 
   Future<void> addProduct(Product product) async {

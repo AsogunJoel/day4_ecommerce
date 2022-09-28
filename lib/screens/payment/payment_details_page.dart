@@ -30,7 +30,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
         children: [
           Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ListView.separated(
                 physics: const BouncingScrollPhysics(),

@@ -1,3 +1,4 @@
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -17,136 +18,137 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            const Text(
-              'Cart',
-            ),
-            if (cart.itemCount > 0)
-              Text(
-                '(${cart.itemCount})',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+    return Consumer<Cart>(
+      builder: (context, cart, child) => Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              const Text(
+                'Cart',
+              ),
+              if (cart.itemCount > 0)
+                Text(
+                  '(${cart.itemCount})',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+            ],
+          ),
+          actions: [
+            if (cart.product.isNotEmpty)
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return AlertDialog(
+                        title: const Text(
+                          'Remove all cart items',
+                        ),
+                        content: const Text(
+                          'Are you sure you want to remove all items from cart ?',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop(false);
+                            },
+                            child: const Text('No'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              cart.removeAllItem();
+                              Navigator.of(ctx).pop(true);
+                            },
+                            child: const Text('Yes'),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.white,
                 ),
               ),
           ],
         ),
-        actions: [
-          if (cart.product.isNotEmpty)
-            IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return AlertDialog(
-                      title: const Text(
-                        'Remove all cart items',
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: cart.product.isNotEmpty
+                  ? ListView.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 5,
                       ),
-                      content: const Text(
-                        'Are you sure you want to remove all items from cart ?',
+                      itemCount: cart.product.length,
+                      itemBuilder: (ctx, i) => SingleCartItem(
+                        cart,
+                        cart.product.values.toList()[i].id,
+                        cart.product.keys.toList()[i],
+                        cart.product.values.toList()[i].price,
+                        cart.product.values.toList()[i].quantity,
+                        cart.product.values.toList()[i].title,
+                        cart.product.values.toList()[i].image,
+                        cart.product.values.toList()[i].shipping,
+                        cart.product.values.toList()[i].variation,
                       ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop(false);
-                          },
-                          child: const Text('No'),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            child: Lottie.asset(
+                                'assets/lottie/lf20_3zaipmwo.json',
+                                animate: true,
+                                repeat: false),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
+            Card(
+              margin: const EdgeInsets.all(15),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                ),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Total : ',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                    const Spacer(),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Chip(
+                      label: Text(
+                        getNairaFormat().nairaPrice(cart.totalAmount),
+                        style: const TextStyle(
+                          color: Colors.white,
                         ),
-                        TextButton(
-                          onPressed: () {
-                            cart.removeAllItem();
-                            Navigator.of(ctx).pop(true);
-                          },
-                          child: const Text('Yes'),
-                        )
-                      ],
-                    );
-                  },
-                );
-              },
-              icon: const Icon(
-                Icons.delete,
-                color: Colors.white,
+                      ),
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ),
+                    CheckOutButton(cart: cart),
+                  ],
+                ),
               ),
             ),
-        ],
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: cart.product.isNotEmpty
-                ? ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 5,
-                    ),
-                    itemCount: cart.product.length,
-                    itemBuilder: (ctx, i) => SingleCartItem(
-                      cart,
-                      cart.product.values.toList()[i].id,
-                      cart.product.keys.toList()[i],
-                      cart.product.values.toList()[i].price,
-                      cart.product.values.toList()[i].quantity,
-                      cart.product.values.toList()[i].title,
-                      cart.product.values.toList()[i].image,
-                      cart.product.values.toList()[i].shipping,
-                      cart.product.values.toList()[i].variation,
-                    ),
-                  )
-                : Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                          ),
-                          child: Lottie.asset(
-                            'assets/lottie/lf20_3zaipmwo.json',
-                            animate: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-          ),
-          Card(
-            margin: const EdgeInsets.all(15),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-              ),
-              child: Row(
-                children: [
-                  const Text(
-                    'Total : ',
-                    style: TextStyle(
-                      fontSize: 17,
-                    ),
-                  ),
-                  const Spacer(),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Chip(
-                    label: Text(
-                      '${cart.nairaPrice(cart.totalAmount)}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                  CheckOutButton(cart: cart),
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
