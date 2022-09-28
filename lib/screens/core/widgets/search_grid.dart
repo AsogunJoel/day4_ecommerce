@@ -1,0 +1,146 @@
+import 'package:day_4/screens/core/widgets/grid_product_tile.dart';
+import 'package:day_4/screens/core/widgets/list_product_tile.dart';
+import 'package:day_4/screens/core/widgets/search_delegate.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../constants/colors.dart';
+import '../../../providers/product.dart';
+import '../../../providers/themes.dart';
+
+class Grid extends StatefulWidget {
+  const Grid(
+    this.title, {
+    Key? key,
+  }) : super(key: key);
+  static const routeName = '/Grid_Screen';
+  final String title;
+
+  @override
+  State<Grid> createState() => _GridState();
+}
+
+class _GridState extends State<Grid> {
+  var selectedValue = "Price(Low to High)";
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(
+        child: Text("Price(Low to High)"),
+        value: "Price(Low to High)",
+      ),
+      const DropdownMenuItem(
+        child: Text("Price(High to Low)"),
+        value: "Price(High to Low)",
+      ),
+    ];
+    return menuItems;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final productData = Provider.of<Products>(context);
+    final prod = productData.PRODUCTS
+        .where((element) => element.shortName == widget.title)
+        .toList();
+    if (selectedValue == "Price(Low to High)") {
+      prod.sort(
+        (a, b) => a.price.compareTo(b.price),
+      );
+    }
+    if (selectedValue == "Price(High to Low)") {
+      prod
+        ..sort(
+          (a, b) => b.price.compareTo(a.price),
+        );
+    }
+    return Scaffold(
+      appBar: widget.title == 'null'
+          ? null
+          : AppBar(
+              title: Text(widget.title),
+            ),
+      body: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                      ),
+                      width: 160,
+                      child: DropdownButton(
+                        value: selectedValue,
+                        isExpanded: true,
+                        items: dropdownItems,
+                        style: TextStyle(
+                          color: Provider.of<ThemeProvider>(
+                            context,
+                            listen: false,
+                          ).isDarkMode
+                              ? kDarkPrimaryColor
+                              : Colors.black,
+                          fontSize: 13,
+                        ),
+                        underline: const SizedBox(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    productData.toggleGridView();
+                  },
+                  icon: Icon(productData.gridview
+                      ? Icons.list_alt_outlined
+                      : Icons.grid_view),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: productData.gridview
+                  ? GridView.builder(
+                      padding: const EdgeInsets.all(8),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 3 / 4.3,
+                      ),
+                      primary: false,
+                      shrinkWrap: true,
+                      itemCount: prod.length,
+                      itemBuilder: (ctx, i) {
+                        return ChangeNotifierProvider.value(
+                          value: prod[i],
+                          child: GridProductTile(),
+                        );
+                      })
+                  : ListView.builder(
+                      itemCount: prod.length,
+                      itemBuilder: (ctx, i) {
+                        return ChangeNotifierProvider.value(
+                          value: prod[i],
+                          child: const ListProductTile(),
+                        );
+                      }),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
