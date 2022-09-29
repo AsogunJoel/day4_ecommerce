@@ -43,53 +43,13 @@ class _CheckOutButtonState extends State<CheckOutButton> {
             }
           : () {
               if (_auth) {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => SimpleDialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    title: Lottie.asset(
-                      'assets/lottie/23211-receive-order.json',
-                      animate: true,
-                      height: 300,
-                    ),
-                    children: [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Place Order for items (${widget.cart.product.length})?',
-                            style: const TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: const Text('No'),
-                          ),
-                          ElevatedButton(
-                            child: const Text('Yes'),
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                              pushNewScreen(
-                                context,
-                                screen: PaymentDetails(
-                                  widget.cart.product.values.toList(),
-                                ),
-                                withNavBar: false,
-                              );
-                            },
-                          )
-                        ],
-                      )
-                    ],
+                // Navigator.of(context).pop();
+                pushNewScreen(
+                  context,
+                  screen: PaymentDetails(
+                    widget.cart.product.values.toList(),
                   ),
+                  withNavBar: false,
                 );
               } else {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();

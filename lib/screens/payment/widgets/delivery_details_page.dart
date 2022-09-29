@@ -193,18 +193,18 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                 onPressed: () {
                   _trySubmit().then(
                     (value) {
-                      // if (value) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => DeliverydetailsPageDialogue(
-                            widget: widget,
+                      if (value) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DeliverydetailsPageDialogue(
+                              widget: widget,
+                            ),
+                            fullscreenDialog: true,
                           ),
-                          fullscreenDialog: true,
-                        ),
-                      );
-                      // } else {
-                      //   return;
-                      // }
+                        );
+                      } else {
+                        return;
+                      }
                     },
                   );
                 },

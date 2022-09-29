@@ -25,7 +25,7 @@ class _OrderConState extends State<OrderCon> {
           ListTile(
             title: Text(getNairaFormat().nairaPrice(widget.order.amount)),
             subtitle: Text(
-              DateFormat('dd.MM.yyy, hh:mm').format(widget.order.dateTime),
+              DateFormat().add_yMMMEd().add_Hms().format(widget.order.dateTime),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

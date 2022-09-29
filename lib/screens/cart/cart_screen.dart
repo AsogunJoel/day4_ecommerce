@@ -85,6 +85,7 @@ class _CartScreenState extends State<CartScreen> {
                       separatorBuilder: (context, index) => const SizedBox(
                         height: 5,
                       ),
+                      padding: const EdgeInsets.all(8),
                       itemCount: cart.product.length,
                       itemBuilder: (ctx, i) => SingleCartItem(
                         cart,

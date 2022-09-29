@@ -1,3 +1,4 @@
+import 'package:day_4/network_module/api_response.dart';
 import 'package:day_4/providers/orders_provider.dart';
 import 'package:day_4/screens/auth_screen/auth_screen.dart';
 import 'package:day_4/screens/connection_screen.dart';
@@ -19,19 +20,13 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  Future<void> _refreshData(BuildContext context) async {
-    try {
-      await Provider.of<Order>(
-        context,
-        listen: false,
-      ).fetchAndSetOrders();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  retryFetchdata() {
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Order>(
+      context,
+      listen: false,
+    ).initializer();
   }
 
   @override
@@ -42,19 +37,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
         title: const Text('Orders'),
       ),
       body: isAuth
-          ? FutureBuilder(
-              future: _refreshData(context),
-              builder: (ctx, dataSnapShot) {
-                if (dataSnapShot.connectionState == ConnectionState.waiting) {
-                  return homeShimmerPage(context);
-                } else if (dataSnapShot.hasError) {
-                  return Center(
-                    child: NetworkPage(
-                      'Something went wrong...',
-                      retryFetchdata,
-                    ),
-                  );
-                } else {
+          ? Consumer<Order>(
+              builder: (context, value, child) {
+                if (value.order.status == Status.COMPLETED) {
                   return Consumer<Order>(builder: (ctx, orderData, _) {
                     if (orderData.orders.isNotEmpty) {
                       return ListView.separated(
@@ -99,6 +84,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       );
                     }
                   });
+                } else if (value.order.status == Status.ERROR) {
+                  return Center(
+                    child: NetworkPage(
+                      'Something went wrong...',
+                      value.initializer(),
+                    ),
+                  );
+                } else {
+                  return const OrderLoadingWidget();
                 }
               },
             )
@@ -110,11 +104,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8.0,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Lottie.asset(
-                        'assets/lottie/lf20_rlz5rs5m.json',
-                      ),
+                    child: Lottie.asset(
+                      'assets/lottie/lf20_rlz5rs5m.json',
+                      height: 400,
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -123,7 +115,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                     ),
                     onPressed: () {
                       Navigator.of(context).pushNamed(AuthScreen.routeName);
@@ -137,125 +129,92 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 }
 
-homeShimmerPage(BuildContext context0) {
-  return Container(
-    color: Colors.white,
-    child: ListView(
-      shrinkWrap: true,
-      children: [
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
+class OrderLoadingWidget extends StatelessWidget {
+  const OrderLoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(211, 211, 211, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(7),
+                ),
               ),
             ),
           ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(211, 211, 211, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(7),
+                ),
               ),
             ),
           ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(211, 211, 211, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(7),
+                ),
               ),
             ),
           ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(211, 211, 211, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(7),
+                ),
               ),
             ),
           ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(211, 211, 211, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(7),
+                ),
               ),
             ),
           ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
-              ),
-            ),
-          ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
-              ),
-            ),
-          ),
-        ),
-        Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context0).size.height * 0.35 / 4,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(211, 211, 211, 1),
-              borderRadius: BorderRadius.all(
-                Radius.circular(7),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }

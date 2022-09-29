@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:day_4/constants/key.dart';
+import 'package:day_4/models/http_exception.dart';
+import 'package:day_4/network_module/api_response.dart';
 import 'package:day_4/providers/cartitem.dart';
 import 'package:day_4/models/orders.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,16 @@ class Order with ChangeNotifier {
     return [..._ordersList];
   }
 
+  initializer() async {
+    await fetchAndSetOrders();
+  }
+
+  ApiResponse<List<OrderItem>> _orders = ApiResponse.completed([]);
+
+  ApiResponse<List<OrderItem>> get order => _orders;
+
   Future<void> fetchAndSetOrders() async {
+    _orders = ApiResponse.loading('loading... ');
     final url = Uri.parse('$urlfromenv/orders/$userId.json?auth=$authToken');
     try {
       final response = await http.get(url);
@@ -35,8 +46,11 @@ class Order with ChangeNotifier {
         },
       );
       _ordersList = loadedOrders.reversed.toList();
+      _orders = ApiResponse.completed(orders);
     } catch (e) {
-      rethrow;
+      _orders = ApiResponse.error(
+        e.toString(),
+      );
     }
     notifyListeners();
   }
