@@ -49,7 +49,6 @@ class Review with ChangeNotifier {
     }
   }
 
-  @override
   Future<void> addReview(SingleReview review) async {
     final url = Uri.parse(
         'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/review.json');
