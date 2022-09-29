@@ -4,8 +4,7 @@ A new Flutter project.
 
 ## About Project
 
-This is the category screen of the application
-![](/assets/images/Shoppify.png) -->
+![](/assets/images/Shoppify.png)
 
 This project is a an e-commerce multi-vendor Flutter application.
 
