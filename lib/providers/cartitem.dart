@@ -27,10 +27,6 @@ class CartItem {
       _$CartItemFromJson(data);
 
   Map<String, dynamic> toJson() => _$CartItemToJson(this);
-
-  nairaPrice(price) {
-    return '₦ ${price.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
-  }
 }
 
 class Cart with ChangeNotifier {

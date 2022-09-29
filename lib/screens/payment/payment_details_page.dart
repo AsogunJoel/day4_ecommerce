@@ -1,6 +1,7 @@
 import 'package:day_4/providers/cartitem.dart';
 import 'package:day_4/screens/core/widgets/image_holder.dart';
 import 'package:day_4/screens/payment/widgets/delivery_details_page.dart';
+import 'package:day_4/utils/naira.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDetails extends StatefulWidget {
@@ -91,7 +92,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                             fontSize: 15, letterSpacing: .5),
                                       ),
                                       Text(
-                                        'Shipping fee: ${widget.cartItem[index].nairaPrice(widget.cartItem[index].shipping)}',
+                                        'Shipping fee: ${getNairaFormat().nairaPrice(widget.cartItem[index].shipping)}',
                                         style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.red,
@@ -99,7 +100,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                         ),
                                       ),
                                       Text(
-                                        'Price: ${widget.cartItem[index].nairaPrice(widget.cartItem[index].price)}',
+                                        'Price: ${getNairaFormat().nairaPrice(widget.cartItem[index].price)}',
                                         style: const TextStyle(
                                           fontSize: 15,
                                           letterSpacing: .5,

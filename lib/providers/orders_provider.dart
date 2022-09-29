@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:day_4/constants/key.dart';
-import 'package:day_4/models/http_exception.dart';
 import 'package:day_4/network_module/api_response.dart';
 import 'package:day_4/providers/cartitem.dart';
 import 'package:day_4/models/orders.dart';

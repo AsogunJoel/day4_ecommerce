@@ -6,3 +6,4 @@ class ConstantKey {
 }
 
 String urlfromenv = dotenv.env['firebaseurl']!;
+String authKey = dotenv.env['authKey']!;

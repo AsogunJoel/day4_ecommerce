@@ -50,8 +50,7 @@ class Review with ChangeNotifier {
   }
 
   Future<void> addReview(SingleReview review) async {
-    final url = Uri.parse(
-        'https://flutter-ecommerce-practice-default-rtdb.firebaseio.com/review.json');
+    final url = Uri.parse('$urlfromenv/review.json');
     try {
       final response = await http.post(
         url,
