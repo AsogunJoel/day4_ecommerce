@@ -40,50 +40,53 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ? Consumer<Order>(
               builder: (context, value, child) {
                 if (value.order.status == Status.COMPLETED) {
-                  return Consumer<Order>(builder: (ctx, orderData, _) {
-                    if (orderData.orders.isNotEmpty) {
-                      return ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 3,
-                        ),
-                        itemCount: orderData.orders.length,
-                        itemBuilder: (ctx, i) {
-                          return OrderCon(
-                            orderData.orders[i],
-                          );
-                        },
-                      );
-                    } else {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Lottie.asset(
-                                'assets/lottie/lf20_nl3zpx7i.json',
-                                repeat: false,
+                  return Consumer<Order>(
+                    builder: (ctx, orderData, _) {
+                      if (orderData.orders.isNotEmpty) {
+                        return ListView.separated(
+                          physics: const BouncingScrollPhysics(),
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 3,
+                          ),
+                          itemCount: orderData.orders.length,
+                          itemBuilder: (ctx, i) {
+                            return OrderCon(
+                              orderData.orders[i],
+                            );
+                          },
+                        );
+                      } else {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Lottie.asset(
+                                  'assets/lottie/lf20_nl3zpx7i.json',
+                                  repeat: false,
+                                ),
                               ),
                             ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text(
-                              'No orders yet...',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 20),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'No orders yet...',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
-                      );
-                    }
-                  });
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  );
                 } else if (value.order.status == Status.ERROR) {
                   return Center(
                     child: NetworkPage(

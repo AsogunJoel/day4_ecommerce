@@ -21,39 +21,39 @@ class Orders extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Orders',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Orders',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    pushNewScreenWithRouteSettings(
+                      context,
+                      screen: const OrdersScreen(),
+                      settings: const RouteSettings(
+                        name: OrdersScreen.routeName,
+                      ),
+                      withNavBar: false,
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  child: const Text(
+                    'View all',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 17,
+                      fontSize: 12,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      pushNewScreenWithRouteSettings(
-                        context,
-                        screen: const OrdersScreen(),
-                        settings: const RouteSettings(
-                          name: OrdersScreen.routeName,
-                        ),
-                        withNavBar: false,
-                      );
-                    },
-                    child: const Text(
-                      'View all',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
             const Divider(),
             Padding(

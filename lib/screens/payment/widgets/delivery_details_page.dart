@@ -27,8 +27,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(10),

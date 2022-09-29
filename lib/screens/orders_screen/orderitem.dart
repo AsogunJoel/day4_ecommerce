@@ -15,7 +15,6 @@ class OrderCon extends StatefulWidget {
 }
 
 class _OrderConState extends State<OrderCon> {
-  var _expanded = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -23,73 +22,104 @@ class _OrderConState extends State<OrderCon> {
       child: Column(
         children: [
           ListTile(
-            title: Text(getNairaFormat().nairaPrice(widget.order.amount)),
+            onTap: () {
+              showModalBottomSheet(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        AppBar(
+                          elevation: 0,
+                          automaticallyImplyLeading: false,
+                          backgroundColor: Colors.transparent,
+                          title: const Text(
+                            'Ordered Items',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                          actions: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              icon: const Icon(
+                                Icons.clear,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
+                        Expanded(
+                          child: Material(
+                            child: ListView.separated(
+                              itemCount: widget.order.products.length,
+                              separatorBuilder: (context, index) =>
+                                  const Divider(),
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'x ${widget.order.products[index].quantity}',
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          letterSpacing: .5,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 4,
+                                      child: Text(
+                                        widget.order.products[index].title,
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          letterSpacing: .5,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        getNairaFormat().nairaPrice(
+                                            widget.order.products[index].price),
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          letterSpacing: .5,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+            title: Text(
+              getNairaFormat().nairaPrice(widget.order.amount),
+            ),
             subtitle: Text(
               DateFormat().add_yMMMEd().add_Hms().format(widget.order.dateTime),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            trailing: IconButton(
-              onPressed: () {
-                setState(() {
-                  _expanded = !_expanded;
-                });
-              },
-              icon: _expanded
-                  ? const Icon(Icons.arrow_drop_up)
-                  : const Icon(Icons.arrow_drop_down),
-            ),
           ),
-          if (_expanded)
-            Container(
-              padding: const EdgeInsets.all(10),
-              height: min(widget.order.products.length * 150.0 + 80, 380),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: ListView(
-                children: [
-                  ...widget.order.products.map(
-                    (e) => Column(
-                      children: [
-                        const Divider(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            children: [
-                              Text(
-                                e.title,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Amount: ${e.nairaPrice(e.price)}',
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Quantity: ${e.quantity}',
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Total: ${e.nairaPrice(e.quantity * e.price)} (${e.quantity})',
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );

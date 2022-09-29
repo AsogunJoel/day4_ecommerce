@@ -170,6 +170,7 @@ class DeliverydetailsPageDialogue extends StatelessWidget {
                                   ElevatedButton(
                                     onPressed: () {
                                       Navigator.of(ctx).pop();
+                                      Navigator.of(ctx).pop();
                                       showDialog(
                                           context: ctx,
                                           builder: (ctx) {
@@ -187,16 +188,11 @@ class DeliverydetailsPageDialogue extends StatelessWidget {
                                                     repeat: false,
                                                     height: 300,
                                                   ),
-                                                  Center(
-                                                    child: Title(
-                                                      color: Colors.red,
-                                                      child: const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                            'Payment unsuccessful'),
-                                                      ),
-                                                    ),
+                                                  const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                        'Payment unsuccessful'),
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
@@ -225,7 +221,9 @@ class DeliverydetailsPageDialogue extends StatelessWidget {
                                     onPressed: () {
                                       _orders.addOrder(
                                         widget.cartItem,
-                                        cart.totalAmount,
+                                        cart.totalAmount != 0.0
+                                            ? cart.totalAmount
+                                            : (widget.cartItem[0].price * 1.0),
                                       );
                                       cart.removeAllItem();
                                       Navigator.of(context).pop();
@@ -246,15 +244,10 @@ class DeliverydetailsPageDialogue extends StatelessWidget {
                                                   repeat: false,
                                                   height: 300,
                                                 ),
-                                                Center(
-                                                  child: Title(
-                                                    color: Colors.red,
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
-                                                      child: Text(
-                                                          'Payment unsuccessful'),
-                                                    ),
+                                                const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'Payment successful',
                                                   ),
                                                 ),
                                                 Row(
@@ -264,6 +257,7 @@ class DeliverydetailsPageDialogue extends StatelessWidget {
                                                   children: [
                                                     ElevatedButton(
                                                       onPressed: () {
+                                                        Navigator.of(ctx).pop();
                                                         Navigator.of(ctx).pop();
                                                         Navigator.of(ctx).pop();
                                                       },
