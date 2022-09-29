@@ -2,7 +2,11 @@
 
 A new Flutter project.
 
-## Getting Started
+## About Project
+
+This is the category screen of the application
+![](/assets/images/Shoppify.png) -->
+
 
 This project is a an e-commerce multi-vendor Flutter application.
 
@@ -19,6 +23,4 @@ A few resources to know before starting is:
 <!-- This is the home screen of the application
 ![](/assets/images/Screenshot_1664388974.png)
 
-This is the category screen of the application
-![](/assets/images/Screenshot_1664434941.png) -->
 

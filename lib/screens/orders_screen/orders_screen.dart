@@ -151,7 +151,7 @@ class OrderLoadingWidget extends StatelessWidget {
             highlightColor: Colors.grey[100]!,
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              height: MediaQuery.of(context).size.height * 0.32 / 4,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(211, 211, 211, 1),
                 borderRadius: BorderRadius.all(
@@ -165,7 +165,7 @@ class OrderLoadingWidget extends StatelessWidget {
             highlightColor: Colors.grey[100]!,
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              height: MediaQuery.of(context).size.height * 0.32 / 4,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(211, 211, 211, 1),
                 borderRadius: BorderRadius.all(
@@ -179,7 +179,7 @@ class OrderLoadingWidget extends StatelessWidget {
             highlightColor: Colors.grey[100]!,
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              height: MediaQuery.of(context).size.height * 0.32 / 4,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(211, 211, 211, 1),
                 borderRadius: BorderRadius.all(
@@ -193,7 +193,7 @@ class OrderLoadingWidget extends StatelessWidget {
             highlightColor: Colors.grey[100]!,
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              height: MediaQuery.of(context).size.height * 0.32 / 4,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(211, 211, 211, 1),
                 borderRadius: BorderRadius.all(
@@ -207,7 +207,7 @@ class OrderLoadingWidget extends StatelessWidget {
             highlightColor: Colors.grey[100]!,
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.35 / 4,
+              height: MediaQuery.of(context).size.height * 0.32 / 4,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(211, 211, 211, 1),
                 borderRadius: BorderRadius.all(

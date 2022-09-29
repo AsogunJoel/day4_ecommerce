@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'models/product.dart';
 import 'providers/auth.dart';
 import 'providers/cartitem.dart';
 import 'providers/category.dart';
-import 'models/orders.dart';
 import 'providers/reviews.dart';
 import 'providers/themes.dart';
 import 'screens/Electronics_category_screens/electronics_category._screen.dart';
@@ -87,10 +85,6 @@ class MyApp extends StatelessWidget {
       child: Builder(
         builder: (context) {
           final _themeProvider = Provider.of<ThemeProvider>(context).themeMode;
-          // Provider.of<Auth>(context).tryAutoLogin().then((value) {
-          //   if (value) {
-          //   }
-          // });
           return Consumer<Auth>(
             builder: (context, value, child) => MaterialApp(
               themeMode: _themeProvider,
