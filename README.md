@@ -12,15 +12,13 @@ A few resources to know before starting is:
 - The vendor profile screen for the application has not been merged, but every other feature should be working fine.  
 - If you find any updated you would want to make feel free to leave comments.
 - Provider is used for state management.
+- Authentication was implemented with firebase api calls, not profile is being created in the back end.
+- No payment method had been added to the project as well. 
 - If you're interested in owning the full application or for any inquiries, contact us at [asogunjoel@gmail.com]. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-This is the home scrren of the application
+<!-- This is the home screen of the application
 ![](/assets/images/Screenshot_1664388974.png)
 
-This is the home scrren of the application
-![](/assets/images/Screenshot_1664434941.png)
+This is the category screen of the application
+![](/assets/images/Screenshot_1664434941.png) -->
 
