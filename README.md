@@ -7,7 +7,6 @@ A new Flutter project.
 This is the category screen of the application
 ![](/assets/images/Shoppify.png) -->
 
-
 This project is a an e-commerce multi-vendor Flutter application.
 
 A few resources to know before starting is:
@@ -17,7 +16,8 @@ A few resources to know before starting is:
 - If you find any updated you would want to make feel free to leave comments.
 - Provider is used for state management.
 - Authentication was implemented with firebase api calls, not profile is being created in the back end.
-- No payment method had been added to the project as well. 
+- No payment method had been added to the project as well.
+- It also supports both light and dart mode. 
 - If you're interested in owning the full application or for any inquiries, contact us at [asogunjoel@gmail.com]. 
 
 <!-- This is the home screen of the application
